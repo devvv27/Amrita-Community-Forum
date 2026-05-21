@@ -1,0 +1,22 @@
+{
+  "name": "software-engineering-vercel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix server start\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server start",
+    "dev:client": "npm --prefix client run dev"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
