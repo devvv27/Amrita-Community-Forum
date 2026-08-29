@@ -1,202 +1,88 @@
-# Amrita Community Forum - Sprint 2
+# Amrita Community Forum
 
-Sprint 2 upgrades the project from a static SPA into a full-stack web platform using the requested stack.
+Amrita Community Forum is a full-stack community platform built for students and users to collaborate, discover opportunities, ask questions, and build a reputation within the community. The platform combines task-based collaboration with discussion-driven engagement.
+
+## Features
+
+### User authentication and profiles
+- Register and log in with secure authentication
+- Access protected pages through JWT-based session handling
+- Manage personal profile information and skill tags
+- View reputation, badges, and community contribution metrics
+
+### Task marketplace
+- Create new tasks with title, description, budget, difficulty, and deadline
+- Browse and filter task listings by skill, difficulty, and budget
+- Open task details and submit proposals with a message and bid
+- Track created tasks and submitted proposals from the user dashboard
+- Manage task lifecycle and project-related collaboration in a forum-style workflow
+
+### Community discussions
+- Create discussion posts under different categories
+- Search for posts and browse community topics
+- Upvote or downvote posts
+- Comment on posts and reply to discussions in a threaded format
+- Save interesting posts and view recommended content
+
+### Messaging and collaboration
+- Open discussion/chat-based task communication
+- Connect task execution with direct community interaction
+- Collaborate around task progress and issue resolution
+
+### Notifications and analytics
+- View community notifications and updates
+- Track task completion, average ratings, dispute rate, and overall reputation
+- See leaderboard data and user performance summaries
+
+### Admin and search features
+- Access admin-related tools for managing platform activity
+- Search users, tasks, and community data through advanced search flows
+- Support community-level discovery for tasks and discussions
 
 ## Tech stack
 
-### Frontend
-- React.js
-- Tailwind CSS
-- Axios
-- React Router DOM
-
-### Backend
-- Node.js
-- Express.js
-
-### Database
-- PostgreSQL
-
-### Auth and security
-- bcrypt
-- JSON Web Token (JWT)
-
-### Tools
-- Git
-- GitHub
-- Postman
-- npm
+- Frontend: React, Vite, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: PostgreSQL
+- Authentication: JWT and bcrypt
+- API communication: Axios
 
 ## Project structure
 
-```
-Software_Engineering/
-├─ client/                  # React + Tailwind frontend
-│  ├─ src/
-│  │  ├─ components/
-│  │  ├─ context/
-│  │  ├─ lib/
-│  │  └─ pages/
-│  └─ package.json
-├─ server/                  # Express + PostgreSQL backend
-│  ├─ db/schema.sql
-│  ├─ src/
-│  │  ├─ config/
-│  │  ├─ controllers/
-│  │  ├─ middleware/
-│  │  ├─ routes/
-│  │  ├─ app.js
-│  │  └─ server.js
-│  └─ package.json
-├─ index.html               # Sprint 1 static legacy
-├─ app.js                   # Sprint 1 static legacy
-└─ styles.css               # Sprint 1 static legacy
-```
+- client/: frontend application
+- server/: backend API and database logic
+- server/db/schema.sql: database schema
+- app.js and api/: root deployment-related files
 
-## Sprint 2 implemented modules
+## Running the project
 
-- Authentication
-	- Register and login
-	- JWT-based protected routes
-	- Password hashing via bcrypt
-- Task marketplace
-	- Create tasks (creator side)
-	- Browse/filter open tasks (solver side)
-	- Submit proposals
-	- Task status lifecycle fields prepared
-- Discussions
-	- Create community posts by category
-	- Upvote/downvote posts
-	- Add comments to posts
-- Profile analytics
-	- Tasks created/completed/disputed
-	- Proposals submitted/accepted
-	- Reputation display
+1. Install dependencies for the backend and frontend.
+2. Configure the environment values required by the server.
+3. Start the backend and frontend.
 
-## Sprint 1 modules now on full-stack pipeline
-
-- Header and navigation management via routed React layout
-- Login and register management using Express + JWT auth
-- Profile and skill tag management (`PUT /profile/me/skills`)
-- My Tasks creator workspace with status lanes and proposal inbox
-- Browse Tasks solver workflow with filters, detail panel, proposal submission, and proposal tracking
-- Tech News feed with category filtering and trending discussions
-- Reputation and analytics summary integrated into profile
-
-## API summary
-
-Base URL: `http://localhost:5000/api`
-
-- Auth
-	- `POST /auth/register`
-	- `POST /auth/login`
-	- `GET /auth/me`
-- Tasks
-	- `GET /tasks`
-	- `GET /tasks/:id`
-	- `POST /tasks`
-	- `PATCH /tasks/:id`
-	- `DELETE /tasks/:id`
-	- `POST /tasks/:id/proposals`
-	- `GET /tasks/mine/created`
-	- `GET /tasks/mine/proposals`
-	- `GET /tasks/mine/received-proposals`
-	- `PATCH /tasks/proposals/:proposalId`
-- Discussions
-	- `GET /posts`
-	- `GET /posts/trending`
-	- `GET /posts/:id`
-	- `POST /posts`
-	- `POST /posts/:id/comments`
-	- `POST /posts/:id/vote`
-- Profile
-	- `GET /profile/me`
-	- `PUT /profile/me/skills`
-
-## Setup instructions
-
-## 1) Database
-
-Create a PostgreSQL database (example name: `acf_db`) and run:
-
-```sql
--- From psql
-\i server/db/schema.sql
-```
-
-## 2) Backend
+Example:
 
 ```bash
 cd server
-cp .env.example .env
-# Update DATABASE_URL and JWT_SECRET in .env
 npm install
-npm run dev
+npm start
 ```
-
-Backend runs at `http://localhost:5000`.
-
-## 3) Frontend
 
 ```bash
 cd client
-cp .env.example .env
 npm install
 npm run dev
 ```
 
-Frontend runs at `http://localhost:5173`.
+The frontend usually runs on port 5173 and the backend runs on port 5000.
 
-## Quick start from repo root
+If you want to start both together from the root folder, use the project script configured in the root package.
 
-If you want both pieces running at once, use:
+## Main purpose of the platform
 
-```bash
-npm install
-npm run dev
-```
-
-That starts the server and client together from the repository root.
-
-## Postman testing flow (recommended)
-
-1. Register user: `POST /api/auth/register`
-2. Login user: `POST /api/auth/login`
-3. Copy JWT token from login response.
-4. Set header in protected requests:
-	 - `Authorization: Bearer <token>`
-5. Test tasks, posts, comments, and profile analytics endpoints.
-
-## Deploy on Vercel (frontend + API)
-
-This repository includes a Vercel configuration at `vercel.json` and serverless API entrypoint at `api/index.js`.
-
-### 1) Import project in Vercel
-
-- Import the repository as a Vercel project.
-- Keep the root directory as repository root (do not set `client` as root for this mode).
-
-### 2) Configure environment variables in Vercel
-
-Set these for Production (and Preview if needed):
-
-- `DATABASE_URL` = your hosted PostgreSQL connection string
-- `JWT_SECRET` = strong random secret
-- `JWT_EXPIRES_IN` = `7d`
-- `CLIENT_ORIGIN` = your Vercel frontend URL (for example `https://your-project.vercel.app`)
-- `NODE_ENV` = `production`
-
-If you keep frontend and API on same Vercel project, `VITE_API_BASE_URL` is optional because frontend defaults to `/api` in production.
-
-### 3) Deploy
-
-- Trigger a new deployment from Vercel dashboard.
-- After deployment, verify:
-	- `https://<your-domain>/` (frontend)
-	- `https://<your-domain>/api/health` (backend)
-
-## Sprint status
-
-- Sprint 1: Implemented in the same full-stack pipeline and static legacy files preserved in root.
-- Sprint 2: Full-stack baseline completed and connected to Sprint 1 workflows.
-- Sprint 3+: Not implemented in this delivery.
+This project is designed as a practical community-driven forum for Amrita users where people can:
+- share knowledge and ideas
+- post problems or opportunities
+- collaborate on technical tasks
+- build reputation through contribution and quality of work
+- participate in a more engaged and useful campus/community network
