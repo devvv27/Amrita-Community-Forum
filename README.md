@@ -1,66 +1,65 @@
 # Amrita Community Forum
 
-Amrita Community Forum is a full-stack community platform built for students and users to collaborate, discover opportunities, ask questions, and build a reputation within the community. The platform combines task-based collaboration with discussion-driven engagement.
+Amrita Community Forum is a full-stack community platform designed for knowledge sharing, task collaboration, and reputation-driven participation within an academic or campus ecosystem. The application combines a task marketplace, discussion forum, profile analytics, and user-level engagement features into a single platform.
 
-## Features
+## Overview
 
-### User authentication and profiles
-- Register and log in with secure authentication
-- Access protected pages through JWT-based session handling
-- Manage personal profile information and skill tags
-- View reputation, badges, and community contribution metrics
+The system is structured as a React frontend connected to an Express backend with PostgreSQL persistence. It supports authenticated user flows, community discussions, task publication, proposal handling, and analytics-driven reputation tracking.
 
-### Task marketplace
-- Create new tasks with title, description, budget, difficulty, and deadline
-- Browse and filter task listings by skill, difficulty, and budget
-- Open task details and submit proposals with a message and bid
-- Track created tasks and submitted proposals from the user dashboard
-- Manage task lifecycle and project-related collaboration in a forum-style workflow
+## Functional modules
 
-### Community discussions
-- Create discussion posts under different categories
-- Search for posts and browse community topics
-- Upvote or downvote posts
-- Comment on posts and reply to discussions in a threaded format
-- Save interesting posts and view recommended content
+### 1. Authentication and authorization
+- User registration and login
+- JWT-based protected routes
+- Password hashing with bcrypt
+- Authenticated access to profile, task, discussion, and notification features
 
-### Messaging and collaboration
-- Open discussion/chat-based task communication
-- Connect task execution with direct community interaction
-- Collaborate around task progress and issue resolution
+### 2. Task marketplace
+- Create and publish tasks with metadata such as title, description, difficulty, budget, and deadline
+- Browse tasks using filters and search parameters
+- View task details and submit proposals with a message and bid amount
+- Track tasks created by the current user and tasks they have applied to
+- Manage task-related collaboration workflow around community work requests
 
-### Notifications and analytics
-- View community notifications and updates
-- Track task completion, average ratings, dispute rate, and overall reputation
-- See leaderboard data and user performance summaries
+### 3. Community discussions
+- Create discussion posts by category
+- Search and filter discussion content
+- Vote on posts to influence relevance and visibility
+- Comment and reply in a nested discussion structure
+- Save favorite posts and receive recommendation-based suggestions
 
-### Admin and search features
-- Access admin-related tools for managing platform activity
-- Search users, tasks, and community data through advanced search flows
-- Support community-level discovery for tasks and discussions
+### 4. User profiles and reputation system
+- Maintain personal profile details and skill tags
+- Display user reputation and derived achievement badges
+- Track metrics such as completed tasks, ratings, completion rate, and dispute rate
+- Show community leaderboard rankings based on contribution and quality signals
 
-## Tech stack
+### 5. Notifications and admin support
+- Notify users of relevant updates and platform events
+- Support admin-related management flows and platform oversight
+- Provide search and discovery for community users and content
 
-- Frontend: React, Vite, Tailwind CSS
-- Backend: Node.js, Express.js
+## Technical architecture
+
+- Frontend: React with Vite and Tailwind CSS
+- Routing: React Router
+- Backend: Node.js with Express
 - Database: PostgreSQL
-- Authentication: JWT and bcrypt
-- API communication: Axios
+- Authentication: JWT + bcrypt
+- API layer: Axios-based client communication with Express routes/controllers
+- State management: React component state and context-based auth/theme handling
 
 ## Project structure
 
-- client/: frontend application
-- server/: backend API and database logic
-- server/db/schema.sql: database schema
-- app.js and api/: root deployment-related files
+- client/: frontend application and UI pages
+- server/: backend API, controllers, routes, middleware, and database logic
+- server/db/schema.sql: database schema definition
+- api/: deployment/hosted API entry points
+- vercel.json: deployment configuration
 
-## Running the project
+## Setup and execution
 
-1. Install dependencies for the backend and frontend.
-2. Configure the environment values required by the server.
-3. Start the backend and frontend.
-
-Example:
+### Backend
 
 ```bash
 cd server
@@ -68,21 +67,20 @@ npm install
 npm start
 ```
 
+### Frontend
+
 ```bash
 cd client
 npm install
 npm run dev
 ```
 
-The frontend usually runs on port 5173 and the backend runs on port 5000.
+The frontend is typically served at port 5173, while the backend runs on port 5000.
 
-If you want to start both together from the root folder, use the project script configured in the root package.
+### Root-level development workflow
 
-## Main purpose of the platform
+A root script is configured to run the frontend and backend together for local development.
 
-This project is designed as a practical community-driven forum for Amrita users where people can:
-- share knowledge and ideas
-- post problems or opportunities
-- collaborate on technical tasks
-- build reputation through contribution and quality of work
-- participate in a more engaged and useful campus/community network
+## Core purpose
+
+This project serves as a community-driven platform for Amrita users to exchange knowledge, discover opportunities, collaborate on projects, and build a measurable reputation based on community contribution and quality of work.
